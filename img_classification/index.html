@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>image_classification_w_MobileNet</title>
+
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="https://unpkg.com/ml5@0.4.0/dist/ml5.min.js"></script>
+	<script src="sketch.js"></script>
+
+	<style>
+		img{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: -200;
+		}
+		.label {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 10px;
+			width: 96.5%;
+			margin: 0;
+			/* border: 1px solid red; */
+		}
+		p {
+			font-family: sans-serif;
+			font-size: 32px;
+			color: yellow;
+			line-height: 32px;
+			/* border: 1px solid red; */
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="label">
+		<p>The algorithm thinks this is</p>
+		<p id="label"></p>
+		<p id="confidence"></p>
+	</div>
+
+
+</body>
+</html>
