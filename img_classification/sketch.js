@@ -2,6 +2,16 @@ let mobileNet;
 let puffin;
 let src = 'trump15.jpeg'
 
+function setup() {
+	createCanvas(640, 460);
+	// create <img> with p5
+	image = createImg('images/'+ src, 'alt image');
+	// chose the mobile net classifier from ml5, callback
+	mobileNet = ml5.imageClassifier('MobileNet', modelReady);
+	
+}
+
+// callback when the modal is loaded
 function modelReady(){
 	console.log('Model is ready');
 	// predict the image, select callback
@@ -22,10 +32,3 @@ function gotResults(error, results){
 	}
 }
 
-function setup() {
-	createCanvas(640, 460);
-	image = createImg('images/'+ src, 'alt image');
-	// chose the mobile net classifier, callback
-	mobileNet = ml5.imageClassifier('MobileNet', modelReady);
-	
-}
