@@ -14,7 +14,7 @@ function setup() {
 // callback when the modal is loaded
 function modelReady(){
 	console.log('Model is ready');
-	// predict the image, select callback
+	// predict the image, takes time, select callback
 	mobileNet.predict(image, gotResults);
 }
 

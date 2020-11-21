@@ -2,6 +2,19 @@ let mobileNet;
 let video;
 let label = '';
 
+function setup() {
+	createCanvas(640, 360);
+	background(0, 0, 255);
+
+	// select default camera
+	video = createCapture(VIDEO);
+	video.hide();
+
+	// chose the mobile net classifier, act continously on 'video', callback
+	mobileNet = ml5.imageClassifier('MobileNet', video, modelReady);
+	
+}
+
 function modelReady(){
 	console.log('Model is ready');
 	// linked with video in setup, select callback
@@ -19,19 +32,6 @@ function gotResults(error, results){
 		// do loop for contiouns prediction:
 		mobileNet.predict(gotResults);
 	}
-}
-
-function setup() {
-	createCanvas(640, 360);
-	background(0, 0, 255);
-
-	// select default camera
-	video = createCapture(VIDEO);
-	video.hide();
-
-	// chose the mobile net classifier, act continously on 'video', callback
-	mobileNet = ml5.imageClassifier('MobileNet', video, modelReady);
-	
 }
 
 function draw() {
