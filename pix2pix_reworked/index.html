@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>pix2pix reworked</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+	<script src="libraries/p5.js"></script>
+	<script src="libraries/p5.dom.js"></script>
+	<script src="libraries/p5.sound.js"></script>
+	<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+	<script src="sketch.js"></script>
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+		}
+
+		canvas {
+			margin: auto;
+		}
+
+		.cnv-fluid canvas, .cnv-fluid img{
+			width: 100% !important;
+			height: auto !important;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+			<!-- STATUS && BUTTONS -->
+			<div class="col-6"><p id="status">Loading Model... Please wait...</p></div>
+			<div class="col"><button id="clearBtn">Clear</button></div>
+			<div class="col"><button id="transferBtn">Transfer</button></div>
+		</div>
+		<div class="row">
+			<!-- THE INPUT CANVAS -->
+			<div class="col-6 cnv-fluid" id="canvasContainer"></div>
+			<!-- THE OUPUT CANVAS -->
+			<div class="col-6 cnv-fluid" id="outputContainer"></div>
+
+			</div>
+		</div>
+
+</body>
+
+</html>
