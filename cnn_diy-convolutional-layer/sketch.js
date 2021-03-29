@@ -4,12 +4,13 @@
 // https://youtu.be/qPKsVAI_W6M
 // https://editor.p5js.org/codingtrain/sketches/BN1lE-gyl
 
-let cat;
+let forestImg;
 let filtered;
-let dim = 28;
+let dim = 800;
+let scaling = 1;
 
 function preload() {
-  cat = loadImage('cat.png');
+  forestImg = loadImage('nature800.png');
 }
 
 // this filter highlits vertical lines
@@ -21,31 +22,31 @@ let filter = [
 
 function setup() {
   // make the filter random
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      filter[i][j] = random(-1, 1);
-    }
-  }
+  randomFilter();
 
-  createCanvas(dim * 10 * 2, dim * 10);
+  createCanvas(dim * scaling * 2, dim * scaling);
   background(255);
   noSmooth();
 
   // draw the original image
-  image(cat, 0, 0, dim * 10, dim * 10);
+  // image(forestImg, 0, 0, dim * scaling, dim * scaling);
   // create an empty image
   filtered = createImage(dim, dim);
 
-  // load th pixels
-  cat.loadPixels();
+  // load the pixels
+  forestImg.loadPixels();
   filtered.loadPixels();
 
+  createNewImage();
+}
+
+function createNewImage(){
   // loop over every pixel in the dimensions
   // exept the ege pixels (1, -1)
   for (let x = 1; x < dim - 1; x++) {
     for (let y = 1; y < dim - 1; y++) {
       // get the rgb values from the concolution layer
-      let rgb = convolution(cat, x, y, filter);
+      let rgb = convolution(forestImg, x, y, filter);
       // get the current x, y, pixel location in the real image
       let pix = index(x, y);
       // draw the image!
@@ -56,12 +57,23 @@ function setup() {
     }
   }
   filtered.updatePixels();
-  image(filtered, dim * 10, 0, dim * 10, dim * 10);
+  // image(filtered, dim * scaling, 0, dim * scaling, dim * scaling);
+  image(filtered, 0, 0, dim * scaling, dim * scaling);
+
+}
+
+function randomFilter(){
+  // make the filter random
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      filter[i][j] = random(-1, 1);
+    }
+  }
 }
 
 // get the x, y, pos inside the real image
 function index(x, y) {
-  return (x + y * cat.width) * 4;
+  return (x + y * forestImg.width) * 4;
 }
 
 function convolution(img, x, y, filter) {
@@ -91,4 +103,12 @@ function convolution(img, x, y, filter) {
     g: sumG,
     b: sumB
   };
+}
+
+// save function
+function keyTyped() {
+  if (key === 's') {
+    filtered.save('filtered-', 'png');
+    console.log('saved!')
+  }
 }
